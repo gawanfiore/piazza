@@ -60,13 +60,13 @@
         <script type="text/x-handlebars-template"
                 id="expanded-question-template">
             <h3>Question</h3>
-            <div class="question">
+            <div class="question" data-id={{ id }}>
                 <h4>{{ subject }}</h4>
                 <p>{{ question }}</p> 
             </div>
 
             <div class="resolve-container">
-              <a href="#" class="resolve btn">Resolve</a>
+              <a href="#" class="resolve btn" data-id={{ id }}>Resolve</a>
             </div>
 
             <div class="responses">
@@ -99,6 +99,7 @@
                 </div>
 
                 <input type="submit" class="btn" value="Submit" />
+                <input type="hidden" value={{id}} name="resp-qid" />
             </form>
         </script>
 
