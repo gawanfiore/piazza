@@ -126,13 +126,23 @@
         });
         leftPane.innerHTML = finalHTML;
 
-        //attach click event listener to each question
-        var qElems = document.getElementsByClassName('question-info');
+
+        //attach click event listener to question list - using event delegation
+        var qList = document.getElementById('left-pane');
+        qList.addEventListener("click", function(event) {
+            if(event.target && event.target.classList.contains("question-info")) {
+                showQuestion(getQuestFromID(event.target.id), getRespFromQID(event.target.id));
+            } else if(event.target && event.target.parentNode.classList.contains("question-info")) {
+                showQuestion(getQuestFromID(event.target.parentNode.id), getRespFromQID(event.target.parentNode.id));
+            }
+        });
+        //attach click event listener to each question - alternate method not using event delegation
+        /*var qElems = document.getElementsByClassName('question-info');
         for(var i = 0; i < qElems.length; i++) {
             qElems[i].addEventListener("click", function(event) {
                 showQuestion(getQuestFromID(this.id), getRespFromQID(this.id));
             });
-        }
+        }*/
     }
 
     // Helper function to return only questions with the search term included in subject or question
